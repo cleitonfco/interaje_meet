@@ -1,0 +1,8 @@
+config/database.yml
+db/schema.rb
+log/*.log
+log/*.pid
+*~
+db/*.sqlite3
+public/javascripts/all.js
+

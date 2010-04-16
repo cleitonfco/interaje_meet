@@ -1,0 +1,36 @@
+<% if @event %>
+<h1><%= @event.name %></h1>
+
+<% form_for(@user) do |f| %>
+  <%= f.error_messages %>
+  <%= f.hidden_field :event_id %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :twitter %><br />
+    <%= f.text_field :twitter %>
+  </p>
+  <p>
+    <%= f.label :site %><br />
+    <%= f.text_field :site %>
+  </p>
+  <p>
+    <%= f.label :company %><br />
+    <%= f.text_field :company %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', users_path %>
+<% else %>
+<h1>Evento não encontrado</h1>
+<% end %>
