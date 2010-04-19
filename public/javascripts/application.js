@@ -2,7 +2,6 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 html_entry = function(entry) {
-  console.log(entry);
   tweet = "<li class=\"" + entry.activity + "\" id=\"" + entry.id + "\">"
   if (entry.twitter_profile != null) {
     tweet = tweet + "<img src=\""+entry.twitter_image+"\" alt=\""+entry.name+"\" style=\"float:left\" />"
