@@ -24,7 +24,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @twitters = User.twitters(@event) || []
     unless params[:user][:twitter].blank?
-      twitter = Twitter.user(params[:user][:twitter])
+      twitter = Twitter.user(params[:user][:twitter].gsub(/http:\/\/(.*)\/(.*)/, "\\2"))
       @user.twitter_profile = twitter.screen_name
       @user.twitter_name = twitter.name
       @user.twitter_image = twitter.profile_image_url

@@ -51,7 +51,7 @@ namespace :init do
     database_configuration =<<-EOF
 production:
   adapter: sqlite3
-  database: db/production.sqlite3
+  database: /home/interaje/subdomains/app/shared/db/production.sqlite3
   pool: 5
   timeout: 5000
 EOF
