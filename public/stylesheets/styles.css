@@ -104,3 +104,5 @@ input, textarea {font:1em arial, sans-serif;}
 #go li.midia {background:#f4f4f4 url(/images/red.gif) -15px top repeat-y;}
 #go li.desenvolvedor {background:#f4f4f4 url(/images/blue.gif) -15px top repeat-y;}
 #go li img {background-color:#FFF; border:1px solid #CCC; float:left; padding:4px; margin:0 10px 6px 0;}
+#sponsor {border-top:3px solid #CCC; margin:10px; padding-top:10px;}
+#sponsor p {text-align:center;}
