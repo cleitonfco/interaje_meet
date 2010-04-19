@@ -1,30 +1,52 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
 
+html_entry = function(entry) {
+  console.log(entry);
+  tweet = "<li class=\"" + entry.activity + "\" id=\"" + entry.id + "\">"
+  if (entry.twitter_profile != null) {
+    tweet = tweet + "<img src=\""+entry.twitter_image+"\" alt=\""+entry.name+"\" style=\"float:left\" />"
+  }
+  if (entry.site != null) {
+    tweet = tweet + "<h2><a href=\""+entry.site+"\">"+entry.name+"</a></h2>"
+  } else {
+    tweet = tweet + "<h2>"+entry.name+"</h2>"
+  }
+  if (entry.bio) {
+    tweet = tweet + "<p>"+entry.bio+"</p>"
+  }
+  if (entry.twitter_profile != null) {
+    tweet = tweet + "<p>Siga no Twitter: <a href=\"http://twitter.com/"+entry.twitter_profile+"\">@"+entry.twitter_profile+"</a></p>"
+  }
+  tweet = tweet + "</li>"
+  return tweet;
+}
+
 $(document).ready(function() {
+  
+  $("#go").everyTime(10000, function() {
+    var complete = $("#go li:first").attr("id");
+    $.getJSON("/?recents="+complete, function(data) {
+      $.each(data.users, function(i, item) {
+        setTimeout(function() {
+          $("#go").prepend(html_entry(item.user));
+          $("#go #" + item.id).hide();
+          $("#go #" + item.id).show("fast");
+        }, 1000 * (i + 1));
+        if (i == 0) { $("#listing ul #" + item.id).css("border-bottom", "1px solid #aaa"); }
+      });
+    });
+    complete = "";
+    return true;
+  });
+  
   $('.more').live("click", function() {
     alink = $(this);
     var ultimo = $("#go li:last").attr("id");
     $.getJSON(alink.attr("href"), function(data) {
       if (data.users.length > 0) {
         $.each(data.users, function(i, item) {
-          tweet = "<li class=\"" + item.user.activity + "\" id=\"" + item.user.id + "\">"
-          if (item.user.twitter_profile != null) {
-            tweet = tweet + "<img src=\""+item.user.twitter_image+"\" alt=\""+item.user.name+"\" style=\"float:left\" />"
-          }
-          if (item.user.site != null) {
-            tweet = tweet + "<h2><a href=\""+item.user.site+"\">"+item.user.name+"</a></h2>"
-          } else {
-            tweet = tweet + "<h2>"+item.user.name+"</h2>"
-          }
-          if (item.user.bio) {
-            tweet = tweet + "<p>"+item.user.bio+"</p>"
-          }
-          if (item.user.twitter_profile != null) {
-            tweet = tweet + "<p>Siga no Twitter: <a href=\"http://twitter.com/"+item.user.twitter_profile+"\">@"+item.user.twitter_profile+"</a></p>"
-          }
-          tweet = tweet + "</li>"
-          $("#go").append(tweet);
+          $("#go").append(html_entry(item.user));
         });
       } else {
         $(".more").hide();
