@@ -1,0 +1,224 @@
+pt-BR:
+  date:
+    formats:
+      default: "%d/%m/%Y"
+      short: "%d de %B"
+      long: "%d de %B de %Y"
+      only_day: "%d"
+    day_names: [Domingo, Segunda, Terça, Quarta, Quinta, Sexta, Sábado]
+    abbr_day_names: [Dom, Seg, Ter, Qua, Qui, Sex, Sáb]
+    month_names: [~, Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro]
+    abbr_month_names: [~, jan, fev, mar, abr, maio, jun, jul, ago, set, out, nov, dez]
+    order: [:day, :month, :year]
+  time:
+    formats:
+      default: "%A, %d de %B de %Y, %H:%Mh"
+      time: "%H:%Mh"
+      short: "%d/%m, %H:%Mh"
+      short_without_comma: "%d/%m/%Y %H:%M"
+      long: "%A, %d de %B de %Y, %H:%Mh"
+      only_second: "%S"
+      article: "%d %b. %Y"
+    am: ''
+    pm: ''
+  datetime:
+    distance_in_words:
+      half_a_minute: "meio minuto"
+      less_than_x_seconds:
+        one: "menos de 1 segundo"
+        other: "menos de {{count}} segundos"
+      x_seconds:
+        one: "1 segundo"
+        other: "{{count}} segundos"
+      less_than_x_minutes:
+        one: "menos de um minuto"
+        other: "menos de {{count}} minutos"
+      x_minutes:
+        one: "1 minuto"
+        other: "{{count}} minutos"
+      about_x_hours:
+        one: "aproximadamente 1 hora"
+        other: "aproximadamente {{count}} horas"
+      x_days:
+        one: "1 dia"
+        other: "{{count}} dias"
+      about_x_months:
+        one: "aproximadamente 1 mês"
+        other: "aproximadamente {{count}} meses"
+      x_months:
+        one: "1 mês"
+        other: "{{count}} meses"
+      about_x_years:
+        one: "aproximadamente 1 ano"
+        other: "aproximadamente {{count}} anos"
+      over_x_years:
+        one: "mais de 1 ano"
+        other: "mais de {{count}} anos"
+  number:
+    format:
+      precision: 3
+      separator: ','
+      delimiter: '.'
+    currency:
+      format:
+        unit: 'R$'
+        precision: 2
+        format: "%u %n"
+        separator: ','
+        delimiter: '.'
+    percentage:
+      format:
+        delimiter: '.'
+    precision:
+      format:
+        delimiter: '.'
+    human:
+      format:
+        precision: 1
+        delimiter: '.'
+# Used in array.to_sentence.
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " e "
+      last_word_connector: " e "
+  activerecord:
+    errors:
+      template:
+        header:
+          one: "Não foi possível efetuar o cadastro."
+          other: "Não foi possível efetuar o cadastro."
+        body: "Por favor, verifique os seguintes campos:"
+      messages:
+        inclusion: "não está incluído na lista"
+        exclusion: "não está disponível"
+        invalid: "não é válido"
+        email_invalid: deve digitar um email válido.
+        confirmation: "não está de acordo com a confirmação"
+        accepted: "precisa ser aceito"
+        empty: "não pode estar em branco"
+        blank: "não pode estar em branco"
+        too_long: " não deve ter mais do que {{count}} caracteres"
+        too_short: "não deve ter menos do que {{count}} caracteres"
+        wrong_length: "não é do tamanho correto (precisa ter {{count}} caracteres)"
+        taken: "não está disponível"
+        not_a_number: "não é um número"
+        greater_than: "precisa ser maior do que {{count}}"
+        greater_than_or_equal_to: "precisa ser maior ou igual a {{count}}"
+        equal_to: "precisa ser igual a {{count}}"
+        less_than: "precisa ser menor do que {{count}}"
+        less_than_or_equal_to: "precisa ser menor ou igual a {{count}}"
+        odd: "precisa ser ímpar"
+        even: "precisa ser par"
+    models:
+      article: "Artigo"
+      author: "Autor"
+      category: "Categoria"
+    attributes:
+      article:
+        title: "Título"
+        subtitle: "Subtítulo"
+        text: "Texto"
+        abstract: "Resumo"
+        elaborated_date: "Data de Elaboração"
+        updated_date: "Data de Atualização"
+        publish_date: "Data de Publicação"
+        language: "Idioma"
+        image: "Imagem na capa"
+        doctype: "Tipo"
+        status: "Situação"
+      author:
+        name: "Nome"
+        surname: "Sobrenome"
+        genre: "Sexo"
+        email: "E-mail"
+        password: "Senha"
+        resume: "Resumo Profissional"
+        site: "Site"
+        photo: "Foto"
+      city: "Cidade"
+      interest: "Interesse"
+      newsletter: "Boletim"
+      occupation: "Profissão"
+      phone: "Telefone"
+      site: "Site"
+      state: "Estado"
+      user: "Usuário"
+      user_session: "Sessão de usuário"
+    attributes:
+      city:
+        name: "Nome"
+      interest:
+        term: "Termo"
+      newsletter:
+        name: "Nome"
+        description: "Descrição"
+      occupation:
+        name: "Nome"
+        female_name: "Nome feminino"
+      phone:
+        number: "Número"
+      site:
+        url: "Endereço"
+      state:
+        name: "Nome"
+        abbreviation: "Abreviação"
+      user:
+        name: "Campo Nome"
+        surname: "Sobrenome"
+        nickname: "Apelido"
+        email: "E-mail"
+        resume: "Resumo"
+        gender: "Sexo"
+        more_info: "Mais informações"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
+        others_occupations: "Outras ocupações"
+        address1: "Endereço"
+        address2: "Complemento"
+        postal_code: "Cep"
+        neighborhood: "Bairro"
+        country: "País"
+        city_abroad: "Cidade estrangeira"
+        confirmed: "Confirmado"
+        forum: "Participo do fórum"
+        community: "Participo do especialistas"
+  formtastic:
+    labels:
+      name: "Nome"
+      article:
+        title: "Título"
+        article_id: "ID Original"
+        text: "Texto"
+        abstract: "Resumo"
+        subtitle: "Subtítulo"
+        published_at: "Data de Publicação"
+        elaborated_date: "Data de Elaboração"
+        updated_date: "Data de Atualização"
+        authors: "Autores"
+        categories: "Categorias"
+        doctype: "Tipo"
+        language: "Idioma"
+        total_points: "Pontos"
+        number_votes: "Votos"
+        status: "Situação"
+    # hints:
+    #   article:
+    #     title: "Escolha um título bem legal pra esse Artigo."
+    actions:
+      create: "Criar {{model}}"
+      update: "Salvar {{model}}"
+  authlogic:
+    error_messages:
+       login_blank: nao pode ficar em branco
+       login_not_found: does not exist
+       login_invalid: should use only letters, numbers, spaces, and .-_@ please.
+       email_invalid: deve ser válido.
+       password_blank: can not be blank
+       password_invalid: is not valid
+       not_active: Your account is not active
+       not_confirmed: Your account is not confirmed
+       not_approved: Your account is not approved
+       blank_record: You can not login with a blank record
+       new_record: You can not login with a new record
+       # Formtastic
