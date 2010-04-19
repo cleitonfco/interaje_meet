@@ -8,7 +8,6 @@ $(document).ready(function() {
     $.getJSON(alink.attr("href"), function(data) {
       if (data.users.length > 0) {
         $.each(data.users, function(i, item) {
-          console.log(item.user.twitter_profile);
           tweet = "<li class=\"" + item.user.activity + "\" id=\"" + item.user.id + "\">"
           if (item.user.twitter_profile != null) {
             tweet = tweet + "<img src=\""+item.user.twitter_image+"\" alt=\""+item.user.name+"\" style=\"float:left\" />"
