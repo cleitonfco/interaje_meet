@@ -1,6 +1,6 @@
 class ReplaceSegmentAtUsers < ActiveRecord::Migration
   def self.up
-    remove_column :users, :sement
+    remove_column :users, :segment
     add_column :users, :activity, :string
   end
 
