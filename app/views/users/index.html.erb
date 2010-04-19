@@ -2,7 +2,7 @@
   <h2>Quem vai:</h2>
   <ul id="go">
   <% @users.each do |user| %>
-    <li class="<%=h user.activity %>">
+    <li class="<%=h user.activity %>" id="<%= user.id %>">
     <% unless user.twitter_profile.blank? %>
       <img src="<%= user.twitter_image %>" alt="<%= user.twitter_name %>" style="float:left" />
     <% end %>
@@ -16,6 +16,9 @@
     </li>
   <% end %>
   </ul>
+	<p>
+		<%= link_to("Mais", users_path(:page => @page + 1), :class => "more") %>
+	</p>
 </div>
 <div id="local">
   <p class="queroparticipar">

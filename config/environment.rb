@@ -8,6 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem "twitter"
+  config.gem "will_paginate"
 
   config.time_zone = 'Brasilia'
   config.i18n.default_locale = 'pt-BR'
