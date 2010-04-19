@@ -88,3 +88,14 @@ p.submit {text-align:center;}
 .submit_button {-moz-border-radius:5px; -webkit-border-radius:5px; cursor:pointer;}
 input, textarea {font:1em arial, sans-serif;}
 #who li {display:inline;}
+#go h2 {font-size:1.3em; margin-bottom:0.4em;}
+#go p {margin-bottom:0.4em;}
+#go a {color:#00c;}
+#go a:hover {background-color:transparent; color:#E77817;}
+#go li {background-color:#f4f4f4; padding:12px 12px 12px 30px; -moz-border-radius:10px; -webkit-border-radius:10px; margin-bottom:10px; overflow:hidden;}
+#go li.investidor {background:#f4f4f4 url(/images/silver.gif) -15px top repeat-y;}
+#go li.designer {background:#f4f4f4 url(/images/yellow.gif) -15px top repeat-y;}
+#go li.empreendedor {background:#f4f4f4 url(/images/green.gif) -15px top repeat-y;}
+#go li.midia {background:#f4f4f4 url(/images/red.gif) -15px top repeat-y;}
+#go li.desenvolvedor {background:#f4f4f4 url(/images/blue.gif) -15px top repeat-y;}
+#go li img {background-color:#FFF; border:1px solid #CCC; float:left; padding:4px; margin:0 10px 6px 0;}

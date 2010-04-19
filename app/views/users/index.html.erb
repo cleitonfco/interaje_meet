@@ -1,25 +1,20 @@
-<h1>Listing users</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Twitter</th>
-    <th>Site</th>
-    <th>Company</th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%=h user.name %></td>
-    <td><%=h user.email %></td>
-    <td><%=h user.twitter %></td>
-    <td><%=h user.site %></td>
-    <td><%=h user.company %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New user', subscribe_path %>
+<div id="main">
+  <h2>Quem vai:</h2>
+  <ul id="go">
+  <% @users.each do |user| %>
+    <li class="<%=h user.activity %>">
+    <% unless user.twitter_profile.blank? %>
+      <img src="<%= user.twitter_image %>" alt="<%= user.twitter_name %>" style="float:left" />
+    <% end %>
+      <h2><%=h user.name %></h2>
+    <% unless user.bio.blank? %>
+      <p><%=h user.bio %></p>
+    <% end %>
+    <% unless user.twitter_profile.blank? %>
+      <p>Siga no Twitter: <a href="http://twitter.com/<%= user.twitter_profile %>">@<%=h user.twitter_profile %></a></p>
+    <% end %>
+    </li>
+  <% end %>
+  </ul>
+</div>
+<div id="local"></div>
