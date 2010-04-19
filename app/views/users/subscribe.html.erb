@@ -28,7 +28,7 @@
     <p class="hint">Escolha abaixo a opção que mais se assemelha com sua atividade profissional:</p>
     <p>
       <%= f.label :activity, "Atividade" %>
-      <span class="select"><%= select("user", "activity", ['Desenvolvedor', 'Designer', 'Midia', 'Empreendedor', 'Investidor', 'Outra'].collect {|p| [ p, p.downcase ] }, {:include_blank => 'Escolha uma opção'}) %></span>
+      <span class="select"><%= select("user", "activity", ['Desenvolvedor', 'Designer', 'Midia', 'Empreendedor', 'Investidor'].collect {|p| [ p, p.downcase ] }, {:include_blank => 'Escolha uma opção'}) %></span>
     </p>
     <p class="hint">Escreva um breve resume biográfico para ajudar no <em>networking</em>: <br />
       <span>Ex: Formando em Administração, trabalho com web desde 2004, atualmente estou trabalhando em uma agência de publicidade e estou desenvolvendo um serviço voltado para a internet.</span></p>
