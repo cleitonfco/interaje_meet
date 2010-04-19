@@ -6,7 +6,11 @@
     <% unless user.twitter_profile.blank? %>
       <img src="<%= user.twitter_image %>" alt="<%= user.twitter_name %>" style="float:left" />
     <% end %>
-      <h2><%=h user.name %></h2>
+		<% if user.site %>
+      <h2><%= link_to user.name, user.site %></h2>
+		<% else %>
+			<h2><%=h user.name %></h2>
+		<% end %>
     <% unless user.bio.blank? %>
       <p><%=h user.bio %></p>
     <% end %>
