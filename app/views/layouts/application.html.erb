@@ -4,14 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <title>Events: <%= controller.action_name %></title>
-  <%= stylesheet_link_tag 'scaffold' %>
+  <title><%= @event.name %></title>
+  <%= stylesheet_link_tag 'styles' %>
 </head>
 <body>
-
-<p style="color: green"><%= flash[:notice] %></p>
-
-<%= yield %>
-
+  <div id="page">
+    <div id="top">
+      <h1 id="event"><%= @event.name %></h1>
+    </div>
+    <%= yield %>
+  </div>
+  <div id="push"></div>
+  <div id="footer"></div>
 </body>
 </html>

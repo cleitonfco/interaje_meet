@@ -1,36 +1,56 @@
+<div id="main">
 <% if @event %>
-<h1><%= @event.name %></h1>
+  <h2>Inscrição</h2>
+  <% form_for(@user) do |f| %>
+    <%= f.error_messages %>
+    <%= f.hidden_field :event_id %>
 
-<% form_for(@user) do |f| %>
-  <%= f.error_messages %>
-  <%= f.hidden_field :event_id %>
-
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p>
-    <%= f.label :twitter %><br />
-    <%= f.text_field :twitter %>
-  </p>
-  <p>
-    <%= f.label :site %><br />
-    <%= f.text_field :site %>
-  </p>
-  <p>
-    <%= f.label :company %><br />
-    <%= f.text_field :company %>
-  </p>
-  <p>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
-
-<%= link_to 'Back', users_path %>
+    <p>
+      <%= f.label :name, "Nome" %>
+      <%= f.text_field :name, :class => "input" %>
+    </p>
+    <p>
+      <%= f.label :email, "E-mail" %>
+      <%= f.text_field :email, :class => "input" %>
+    </p>
+    <p>
+      <%= f.label :twitter, "Twitter" %>
+      <%= f.text_field :twitter, :class => "input" %>
+    </p>
+    <p>
+      <%= f.label :site, "Site" %>
+      <%= f.text_field :site, :class => "input" %>
+    </p>
+    <p>
+      <%= f.label :company, "Empresa" %>
+      <%= f.text_field :company, :class => "input" %>
+    </p>
+    <p class="hint">Escolha abaixo a opção que mais se assemelha com sua atividade profissional:</p>
+    <p>
+      <%= f.label :activity, "Atividade" %>
+      <span class="select"><%= select("user", "activity", ['Desenvolvedor', 'Designer', 'Mídia', 'Administrador', 'Investidor', 'Outra'].collect {|p| [ p, p.downcase ] }, {:include_blank => 'Escolha uma opção'}) %></span>
+    </p>
+    <p class="hint">Escreva um breve resume biográfico para ajudar no <em>networking</em>: <br />
+      <span>Ex: Formando em Administração, trabalho com web desde 2004, atualmente estou trabalhando em uma agência de publicidade e estou desenvolvendo um serviço voltado para a internet.</span></p>
+    <p class="with_text">
+      <%= f.label :bio, "Resumo Biográfico" %>
+      <%= f.text_area :bio, :class => "textarea", :rows => 5, :cols => 48 %>
+    </p>
+    <p class="submit">
+      <input type="submit" class="submit_button" value="Salvar" name="commit" />
+    </p>
+  <% end %>
 <% else %>
-<h1>Evento não encontrado</h1>
+  <h1>Evento não encontrado</h1>
 <% end %>
+</div>
+<div id="local">
+  <h2>Quem vai?</h2>
+<% unless @twitters.empty? %>
+  <ul id="who">
+<%  @twitters.each do |twitter| %>
+    <li><a href="http://twitter.com/<%= twitter.twitter_profile %>" title="<%= twitter.twitter_name %>"><img src="<%= twitter.twitter_image.gsub(/_normal\./, "_bigger.") %>" /></a></li>
+<%  end %>
+  </ul>
+<% end %>
+</div>
