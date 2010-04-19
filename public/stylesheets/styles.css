@@ -94,6 +94,8 @@ p.submit {text-align:center;}
 input, textarea {font:1em arial, sans-serif;}
 #who li {display:inline;}
 #go h2 {font-size:1.3em; margin-bottom:0.4em;}
+#go h2 a {color: #333;text-decoration: none;}
+#go h2 a:hover {color: #E77817;text-decoration: none;}
 #go p {margin-bottom:0.4em;}
 #go a {color:#00c;}
 #go a:hover {background-color:transparent; color:#E77817;}
