@@ -4,5 +4,5 @@ class User < ActiveRecord::Base
     { :conditions => ["(twitter is not NULL AND twitter <> '') and event_id = ?", event.id], :order => 'created_at DESC' }
   }
   
-  validates_presence_of :name,:email
+  validates_presence_of :name, :email
 end

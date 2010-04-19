@@ -3,7 +3,16 @@ class UsersController < ApplicationController
   layout "application"
 
   def index
-    @users = @event.users
+    @page = params.fetch(:page, 1).to_i
+    @users = @event.users.paginate(:page => @page, :per_page => 10, :order => 'id DESC')
+    respond_to do |format|
+      format.html
+      format.js { render(:content_type => :js, :text => {:users => @users, :next_page => @page + 1}.to_json) }
+    end
+  end
+  
+  def more
+    
   end
 
   def subscribe
