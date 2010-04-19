@@ -45,16 +45,12 @@
 <% end %>
 </div>
 <div id="local">
-  <div id="sponsor">
-    <h3>Apoio:</h3>
-    <p><a href="http://jus.uol.com.br" title="Jus Navigandi"><img src="/images/jus.png" alt="Jus Navigandi" /></a></p>
-    <p><a href="http://www.ziggi.com.br" title="Zigg Downloads"><img src="/images/zigg.png" alt="Zigg Downloads" /></a></p>
-  </div>
+  <%= render :partial => "sponsors" %>
   <h2>Quem vai:</h2>
 <% unless @twitters.empty? %>
   <ul id="who">
 <%  @twitters.each do |twitter| %>
-    <li><a href="http://twitter.com/<%= twitter.twitter_profile %>" title="<%= twitter.twitter_name %>"><img src="<%= twitter.twitter_image.gsub(/_normal\./, "_bigger.") %>" /></a></li>
+    <li><a href="http://twitter.com/<%= twitter.twitter_profile %>" title="<%= twitter.twitter_name %>"><img src="<%= twitter.twitter_image.gsub(/_normal/, "_bigger") %>" /></a></li>
 <%  end %>
   </ul>
 <% end %>

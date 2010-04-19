@@ -25,14 +25,14 @@ namespace :deploy do
   
   desc "Restarting mod_rails with restart.txt"
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "chown interaje.www-data -R #{deploy_to}"
+    # run "chown interaje.www-data -R #{deploy_to}"
     run "touch #{current_path}/tmp/restart.txt"
   end
  
   [:start, :stop].each do |t|
     desc "don't need #{t} task with mod_rails"
     task t, :roles => :app do
-      run "chown interaje.www-data -R #{deploy_to}"
+      # run "chown interaje.www-data -R #{deploy_to}"
       run "touch #{current_path}/tmp/restart.txt"
     end
   end
@@ -51,7 +51,7 @@ namespace :init do
     database_configuration =<<-EOF
 production:
   adapter: sqlite3
-  database: db/production.sqlite3
+  database: /home/interaje/subdomains/app/shared/db/production.sqlite3
   pool: 5
   timeout: 5000
 EOF
