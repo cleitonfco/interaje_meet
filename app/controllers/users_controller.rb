@@ -8,12 +8,13 @@ class UsersController < ApplicationController
 
   def subscribe
     @user = User.new(:event => @event)
-    @twitters = User.twitters(@event)
+    @twitters = User.twitters(@event) || []
   end
 
   def create
     @user = User.new(params[:user])
-    if params[:user][:twitter]
+    @twitters = User.twitters(@event) || []
+    unless params[:user][:twitter].blank?
       twitter = Twitter.user(params[:user][:twitter])
       @user.twitter_profile = twitter.screen_name
       @user.twitter_name = twitter.name
@@ -30,7 +31,7 @@ class UsersController < ApplicationController
       flash[:notice] = 'Sua inscrição foi recebida. Muito Obrigado!'
       redirect_to users_path
     else
-      render :action => "new"
+      render :action => "subscribe"
     end
   end
 
