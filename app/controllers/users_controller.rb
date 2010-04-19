@@ -15,10 +15,6 @@ class UsersController < ApplicationController
       format.js { render(:content_type => :js, :text => {:users => @users, :next_page => @page + 1}.to_json) }
     end
   end
-  
-  def more
-    
-  end
 
   def subscribe
     @user = User.new(:event => @event)
