@@ -54,6 +54,9 @@ production:
   database: /home/interaje/subdomains/app/shared/db/production.sqlite3
   pool: 5
   timeout: 5000
+twitter:
+  user: interaje
+  password: interage
 EOF
  
     run "mkdir -p #{shared_path}/config"

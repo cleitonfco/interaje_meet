@@ -25,7 +25,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     @twitters = User.twitters(@event) || []
     unless params[:user][:twitter].blank?
-      twitter = Twitter.user(params[:user][:twitter].gsub(/http:\/\/(.*)\/(.*)/, "\\2"))
+      twitter = Twitter.user(params[:user][:twitter].gsub(/https?:\/\/(.*)\/(.*)/, "\\2"))
       @user.twitter_profile = twitter.screen_name
       @user.twitter_name = twitter.name
       @user.twitter_image = twitter.profile_image_url
@@ -39,6 +39,16 @@ class UsersController < ApplicationController
     end
     if @user.save
       flash[:notice] = 'Sua inscrição foi recebida. Muito Obrigado!'
+      unless @user.twitter_profile.blank?
+        begin
+          config = YAML::load(ERB.new(IO.read(RAILS_ROOT + "/config/database.yml")).result)["twitter"]
+          httpauth = Twitter::HTTPAuth.new(config['user'], config['password'])
+          client = Twitter::Base.new(httpauth)
+          client.update("@#{@user.twitter_profile} Obrigado por se inscrever no #interaje. Esperamos você no auditório da FIEPI 8º andar, a partir de 18h30")
+        rescue Exception => e
+          puts e.to_s
+        end
+      end
       redirect_to users_path
     else
       render :action => "subscribe"
