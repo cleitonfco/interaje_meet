@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   }
   
   validates_presence_of :name, :email
+  
+  def humanize_site
+    "http://#{site.downcase.gsub("http://", "")}"
+  end
 end
