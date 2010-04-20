@@ -4,7 +4,7 @@
 html_entry = function(entry) {
   tweet = "<li class=\"" + entry.activity + "\" id=\"" + entry.id + "\">"
   if (entry.twitter_profile != null) {
-    tweet = tweet + "<img src=\""+entry.twitter_image+"\" alt=\""+entry.name+"\" style=\"float:left\" />"
+    tweet = tweet + "<img src=\"http://"+entry.twitter_image.replace("http://", "")+"\" alt=\""+entry.name+"\" style=\"float:left\" />"
   }
   if (entry.site != null) {
     tweet = tweet + "<h2><a href=\""+entry.site+"\">"+entry.name+"</a></h2>"
