@@ -7,7 +7,7 @@ html_entry = function(entry) {
     tweet = tweet + "<img src=\""+entry.twitter_image+"\" alt=\""+entry.name+"\" style=\"float:left\" />"
   }
   if (entry.site != null) {
-    tweet = tweet + "<h2><a href=\""+entry.site+"\">"+entry.name+"</a></h2>"
+    tweet = tweet + "<h2><a href=\"http://"+entry.site.replace("http://", "")+"\">"+entry.name+"</a></h2>"
   } else {
     tweet = tweet + "<h2>"+entry.name+"</h2>"
   }
@@ -34,6 +34,7 @@ $(document).ready(function() {
         }, 1000 * (i + 1));
         if (i == 0) { $("#listing ul #" + item.id).css("border-bottom", "1px solid #aaa"); }
       });
+      $(".total_entries").html("("+data.next_page+" inscritos)");
     });
     complete = "";
     return true;

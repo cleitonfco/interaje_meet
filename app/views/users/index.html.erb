@@ -1,13 +1,13 @@
 <div id="main">
-  <h2>Quem vai:</h2>
+  <h2>Quem vai <span class="total_entries">(<%= @users.total_entries%> inscritos)</span>:</h2>
   <ul id="go">
   <% @users.each do |user| %>
     <li class="<%=h user.activity %>" id="<%= user.id %>">
     <% unless user.twitter_profile.blank? %>
       <img src="<%= user.twitter_image %>" alt="<%= user.twitter_name %>" style="float:left" />
     <% end %>
-		<% if user.site %>
-      <h2><%= link_to user.name, user.site %></h2>
+		<% unless user.site.blank? %>
+      <h2><%= link_to user.name, user.humanize_site %></h2>
 		<% else %>
 			<h2><%=h user.name %></h2>
 		<% end %>

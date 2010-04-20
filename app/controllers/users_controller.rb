@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     if params['recents']
       @users = User.all(:conditions => "id > #{params['recents']} and event_id = #{@event.id}", :order => 'id DESC')
-      @page = 1
+      @page = User.count - 1
     else
       @page = params.fetch(:page, 1).to_i
       @users = @event.users.paginate(:page => @page, :per_page => 10, :order => 'id DESC')
