@@ -55,6 +55,7 @@ a img { border:none; }
 #local {float:right; width:308px;}
 #event {background:url(/images/logo-encontro.gif) no-repeat; width:806px; height:161px; display:block; text-indent:-999em;}
 h2 {font-weight:normal; font-size:1.6em; margin-bottom:18px;}
+h2 span {font-size: 0.7em;}
 p {margin-bottom:16px;}
 p.hint {font-size:1.2em; margin:25px 0 10px 0; padding:0 0.8em;}
 p.hint span {font-size:0.85em; color:#888;}

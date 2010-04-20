@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.js { render(:content_type => :js, :text => {:users => @users, :next_page => @page + 1}.to_json) }
+      format.js { render(:content_type => :js, :text => {:users => @users, :next_page => User.count}.to_json) }
     end
   end
 
