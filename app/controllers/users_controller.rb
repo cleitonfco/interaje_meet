@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def subscribe_event
     @user = User.find(:first, :conditions => ["token=? and id=?", params[:token], params[:user].to_i])
     if @user
-      @user.event_ids << @event.id
+      @user.events << @event
       @user.save
       flash[:notice] = "Sua inscrição apra o evento: #{@event.name} foi recebida. Muito Obrigado!"
        redirect_to users_path
