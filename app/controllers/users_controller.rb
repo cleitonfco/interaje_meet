@@ -20,6 +20,18 @@ class UsersController < ApplicationController
     @user = User.new(:event => @event)
     @twitters = User.twitters(@event) || []
   end
+  
+  def subscribe_event
+    @user = User.find(:first, :conditions => ["token=? and user=?", params[:token], params[:user])
+    if @user
+      @user.event_ids << @event.id
+      @user.save
+      flash[:notice] = "Sua inscrição apra o evento: #{@event.name} foi recebida. Muito Obrigado!"
+    else
+      flash[:notice] = "Não foi possível. Usuário não encontrado"
+    end
+     
+  end
 
   def create
     @user = User.new(params[:user])
