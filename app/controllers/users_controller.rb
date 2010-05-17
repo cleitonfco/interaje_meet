@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 
   def index
     if params['recents']
-      @users = User.all(:conditions => "id > #{params['recents']} and event_id = #{@event.id}", :order => 'id DESC')
-      @page = User.count - 1
+      @users = @event.users.recents(params['recents'])
+      @page = @event.users.count - 1
     else
       @page = params.fetch(:page, 1).to_i
       @users = @event.users.paginate(:page => @page, :per_page => 10, :order => 'id DESC')
@@ -17,27 +17,27 @@ class UsersController < ApplicationController
   end
 
   def subscribe
-    @user = User.new(:event => @event)
-    @twitters = User.twitters(@event) || []
+    @user = @event.users.new
+    @twitters = @event.users.twitters || []
   end
   
   def subscribe_event
-    @user = User.find(:first, :conditions => ["token=? and id=?", params[:token], params[:user].to_i])
+    @user = User.by_token(params[:user].to_i, params[:token])
     if @user
       @user.events << @event
       @user.save
-      flash[:notice] = "Sua inscrição apra o evento: #{@event.name} foi recebida. Muito Obrigado!"
-       redirect_to users_path
+      flash[:notice] = "Sua inscrição para o evento: #{@event.name} foi confirmada. Muito Obrigado!"
+      redirect_to users_path
     else
-      flash[:notice] = "Não foi possível. Usuário não encontrado"
-       redirect_to users_path
+      flash[:notice] = "Não foi possível concluir a confirmação. Usuário não encontrado!"
+      redirect_to users_path
     end
      
   end
 
   def create
-    @user = User.new(params[:user])
-    @twitters = User.twitters(@event) || []
+    @user = @event.users.new(params[:user])
+    @twitters = @event.users.twitters || []
     unless params[:user][:twitter].blank?
       twitter = Twitter.user(params[:user][:twitter].gsub(/https?:\/\/(.*)\/(.*)/, "\\2"))
       @user.twitter_profile = twitter.screen_name

@@ -1,13 +1,10 @@
 class User < ActiveRecord::Base
   has_many :subscriptions
   has_many :events, :through => :subscriptions
-  default_scope :joins => :subscriptions, :order => "subscriptions.created_at desc"
-  named_scope :twitters, lambda { |event| 
-    { :conditions => ["(twitter is not NULL AND twitter <> '') and subscriptions.event_id = ?", event] }
-  }
-  named_scope :recents, lambda { |last, event| 
-    { :conditions => ["subscriptions.event_id = ? and subscriptions.created_at > ?", event, last] }
-  }
+
+  named_scope :twitters, :conditions => "twitter is not NULL AND twitter <> ''", :order => "subscriptions.created_at DESC"
+  named_scope :recents, lambda { |last| { :conditions => ["subscriptions.created_at > ?", last], :order => "subscriptions.created_at DESC" } }
+  named_scope :by_token, lambda { |id, token| { :conditions => ["id = ? and token = ?", id, token], :limit => 1 } }
 
   validates_presence_of :name, :email
 
