@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name, :email
 
-  before_save :generate_token
+  before_create :generate_token
 
   def humanize_site
     "http://#{site.downcase.gsub("http://", "")}"
