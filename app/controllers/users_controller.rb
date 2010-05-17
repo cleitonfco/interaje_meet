@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
   
   def subscribe_event
-    @user = User.find(:first, :conditions => ["token=? and user=?", params[:token], params[:user])
+    @user = User.find(:first, :conditions => ["token=? and user=?", params[:token], params[:user]])
     if @user
       @user.event_ids << @event.id
       @user.save
