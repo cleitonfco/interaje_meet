@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :events
+  has_many :subscriptions
+  has_many :events, :through => :subscriptions
   named_scope :twitters, lambda { |event| 
     { :conditions => ["(twitter is not NULL AND twitter <> '') and event_id = ?", event.id], :order => 'created_at DESC' }
   }
