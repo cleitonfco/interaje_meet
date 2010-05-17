@@ -22,13 +22,15 @@ class UsersController < ApplicationController
   end
   
   def subscribe_event
-    @user = User.find(:first, :conditions => ["token=? and user=?", params[:token], params[:user]])
+    @user = User.find(:first, :conditions => ["token=? and id=?", params[:token], params[:user].to_i])
     if @user
-      @user.event_ids << @event.id
+      @user.events << @event
       @user.save
       flash[:notice] = "Sua inscrição apra o evento: #{@event.name} foi recebida. Muito Obrigado!"
+       redirect_to users_path
     else
       flash[:notice] = "Não foi possível. Usuário não encontrado"
+       redirect_to users_path
     end
      
   end
@@ -85,6 +87,6 @@ class UsersController < ApplicationController
 
   private
     def check_event
-      @event = Event.find(1)
+      @event = Event.find(2)
     end
 end
