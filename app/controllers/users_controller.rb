@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
   before_filter :check_event
+  before_filter :check_twitters, :only => [:subscribe, :create]
   layout "application"
 
   def index
     if params['recents']
-      @users = @event.users.recents(params['recents'])
-      @page = @event.users.count - 1
+      @users = User.recents(@event.id, params['recents'])
+      @page = Subscription.by_event(@event.id).count - 1
     else
       @page = params.fetch(:page, 1).to_i
-      @users = @event.users.paginate(:page => @page, :per_page => 10, :order => 'id DESC')
+      @subscriptions = Subscription.by_event(@event.id).paginate(:page => @page, :per_page => 10)
     end
     respond_to do |format|
       format.html
@@ -17,8 +18,7 @@ class UsersController < ApplicationController
   end
 
   def subscribe
-    @user = @event.users.new
-    @twitters = @event.users.twitters || []
+    @user = User.new
   end
   
   def subscribe_event
@@ -36,8 +36,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = @event.users.new(params[:user])
-    @twitters = @event.users.twitters || []
+    @user = User.new(params[:user])
+    @user.events << @event
     unless params[:user][:twitter].blank?
       twitter = Twitter.user(params[:user][:twitter].gsub(/https?:\/\/(.*)\/(.*)/, "\\2"))
       @user.twitter_profile = twitter.screen_name
@@ -53,14 +53,16 @@ class UsersController < ApplicationController
     end
     if @user.save
       flash[:notice] = 'Sua inscrição foi recebida. Muito Obrigado!'
-      unless @user.twitter_profile.blank?
-        begin
-          config = YAML::load(ERB.new(IO.read(RAILS_ROOT + "/config/database.yml")).result)["twitter"]
-          httpauth = Twitter::HTTPAuth.new(config['user'], config['password'])
-          client = Twitter::Base.new(httpauth)
-          client.update("@#{@user.twitter_profile} Obrigado por se inscrever no #interaje. Esperamos você no auditório da FIEPI 8º andar, a partir de 18h30")
-        rescue Exception => e
-          puts e.to_s
+      if RAILS_ENV == 'production'
+        unless @user.twitter_profile.blank?
+          begin
+            config = YAML::load(ERB.new(IO.read(RAILS_ROOT + "/config/database.yml")).result)["twitter"]
+            httpauth = Twitter::HTTPAuth.new(config['user'], config['password'])
+            client = Twitter::Base.new(httpauth)
+            client.update("@#{@user.twitter_profile} Obrigado por se inscrever no #interaje. Esperamos você dia 18/05 no auditório da FIEPI 8º andar, a partir de 18h30")
+          rescue Exception => e
+            puts e.to_s
+          end
         end
       end
       redirect_to users_path
@@ -69,24 +71,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # def update
-  #   @user = User.find(params[:id])
-  #   if @user.update_attributes(params[:user])
-  #     flash[:notice] = 'User was successfully updated.'
-  #     redirect_to(@user)
-  #   else
-  #     render :action => "edit"
-  #   end
-  # end
-  # 
-  # def destroy
-  #   @user = User.find(params[:id])
-  #   @user.destroy
-  #   redirect_to(users_url)
-  # end
-
   private
     def check_event
       @event = Event.find(2)
+    end
+
+    def check_twitters
+      @twitters = @event.users.twitters || []
     end
 end

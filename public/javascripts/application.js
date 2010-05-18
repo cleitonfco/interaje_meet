@@ -2,7 +2,7 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 html_entry = function(entry) {
-  tweet = "<li class=\"" + entry.activity + "\" id=\"" + entry.id + "\">"
+  tweet = "<li class=\"" + entry.activity + "\" id=\"" + entry.subscription_id + "\">"
   if (entry.twitter_profile != null) {
     tweet = tweet + "<img src=\""+entry.twitter_image+"\" alt=\""+entry.name+"\" style=\"float:left\" />"
   }
@@ -29,10 +29,10 @@ $(document).ready(function() {
       $.each(data.users, function(i, item) {
         setTimeout(function() {
           $("#go").prepend(html_entry(item.user));
-          $("#go #" + item.id).hide();
-          $("#go #" + item.id).show("fast");
+          $("#go #" + item.subscription_id).hide();
+          $("#go #" + item.subscription_id).show("fast");
         }, 1000 * (i + 1));
-        if (i == 0) { $("#listing ul #" + item.id).css("border-bottom", "1px solid #aaa"); }
+        if (i == 0) { $("#listing ul #" + item.subscription_id).css("border-bottom", "1px solid #aaa"); }
       });
       $(".total_entries").html("("+data.next_page+" inscritos)");
     });

@@ -3,7 +3,6 @@
   <h2>Inscrição</h2>
   <% form_for(@user) do |f| %>
     <%= f.error_messages %>
-    <%= f.hidden_field :event_id %>
 
     <p>
       <%= f.label :name, "Nome" %>
@@ -47,6 +46,7 @@
 <div id="local">
   <%= render :partial => "sponsors" %>
   <h2>Quem vai:</h2>
+  <p><%= link_to 'Veja aqui o perfil completo de todos que vão participar', users_path %></p>
 <% unless @twitters.empty? %>
   <ul id="who">
 <%  @twitters.each do |twitter| %>
