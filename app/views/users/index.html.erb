@@ -4,7 +4,7 @@
 <% @subscriptions.each do |subscription| %>
     <li class="<%=h subscription.user.activity %>" id="<%= subscription.id %>">
     <% unless subscription.user.twitter_profile.blank? %>
-      <img src="<%= subscription.user.twitter_image %>" alt="<%= subscription.user.twitter_name %>" style="float:left" />
+      <img src="<%= subscription.user.twitter_image %>" alt="<%= subscription.user.twitter_name %>" style="float:left" width="48" height="48" />
     <% end %>
     <% unless subscription.user.site.blank? %>
       <h2><%= link_to subscription.user.name, subscription.user.humanize_site %></h2>

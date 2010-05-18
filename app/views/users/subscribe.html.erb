@@ -49,7 +49,7 @@
 <% unless @twitters.empty? %>
   <ul id="who">
 <%  @twitters.each do |twitter| %>
-    <li><a href="http://twitter.com/<%= twitter.twitter_profile %>" title="<%= twitter.twitter_name %>"><img src="<%= twitter.twitter_image.gsub(/_normal/, "_bigger") %>" /></a></li>
+    <li><a href="http://twitter.com/<%= twitter.twitter_profile %>" title="<%= twitter.twitter_name %>"><img src="<%= twitter.twitter_image.gsub(/_normal/, "_bigger") %>" width="73" height="73" /></a></li>
 <%  end %>
   </ul>
   <p><%= link_to 'Veja aqui o perfil completo de todos que vão participar', users_path %></p>
