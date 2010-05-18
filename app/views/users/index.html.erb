@@ -6,11 +6,11 @@
     <% unless subscription.user.twitter_profile.blank? %>
       <img src="<%= subscription.user.twitter_image %>" alt="<%= subscription.user.twitter_name %>" style="float:left" />
     <% end %>
-		<% unless subscription.user.site.blank? %>
+    <% unless subscription.user.site.blank? %>
       <h2><%= link_to subscription.user.name, subscription.user.humanize_site %></h2>
-		<% else %>
-			<h2><%=h subscription.user.name %></h2>
-		<% end %>
+    <% else %>
+      <h2><%=h subscription.user.name %></h2>
+    <% end %>
     <% unless subscription.user.bio.blank? %>
       <p><%=h subscription.user.bio %></p>
     <% end %>
@@ -20,13 +20,12 @@
     </li>
   <% end %>
   </ul>
-	<p>
-		<%= link_to("Mais", users_path(:page => @page + 1), :class => "more") %>
-	</p>
+  <p>
+    <%= link_to("Mais", users_path(:page => @page + 1), :class => "more") %>
+  </p>
 </div>
 <div id="local">
-  <p class="queroparticipar">
-    <%= link_to "Quero participar", subscribe_path %>
-  </p>
-  <%= render :partial => "sponsors" %>
+  <p class="queroparticipar"><%= link_to "Quero participar", subscribe_path %></p>
+  <p><a href="http://interaje.com.br/">Acesse o site do Interaje</a></p>
+  <p><img src="/images/webcam-aoc.jpg" alt="Promoção: Concorra a uma Webcam AOC 3.5MP" /></p>
 </div>

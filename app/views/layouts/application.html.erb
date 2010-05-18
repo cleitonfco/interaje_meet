@@ -11,7 +11,7 @@
   <div id="page">
     <div id="top">
       <h1 id="event"><%= @event.name %></h1>
-      <p class="acesse_site"><a href="http://interaje.com.br/">Acesse o site do Interaje</a></p>
+      <%= render :partial => "sponsors" %>
     </div>
     <%= yield %>
   </div>

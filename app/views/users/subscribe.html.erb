@@ -44,14 +44,14 @@
 <% end %>
 </div>
 <div id="local">
-  <%= render :partial => "sponsors" %>
+  <p><img src="/images/webcam-aoc.jpg" alt="Promoção: Concorra a uma Webcam AOC 3.5MP" /></p>
   <h2>Quem vai:</h2>
-  <p><%= link_to 'Veja aqui o perfil completo de todos que vão participar', users_path %></p>
 <% unless @twitters.empty? %>
   <ul id="who">
 <%  @twitters.each do |twitter| %>
     <li><a href="http://twitter.com/<%= twitter.twitter_profile %>" title="<%= twitter.twitter_name %>"><img src="<%= twitter.twitter_image.gsub(/_normal/, "_bigger") %>" /></a></li>
 <%  end %>
   </ul>
+  <p><%= link_to 'Veja aqui o perfil completo de todos que vão participar', users_path %></p>
 <% end %>
 </div>
